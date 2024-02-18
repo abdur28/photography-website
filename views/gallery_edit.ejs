@@ -1,0 +1,62 @@
+<%- include("partials/header") %>
+
+<!-- Content -->
+<div class="container mx-auto">
+  <h1 class="font-signika text-4xl pt-10 pb-8">GALLERY EDIT</h1>
+  <section>
+    <div class="container">
+      <!-- Flex grid for image and button pairs -->
+      <div class="flex flex-wrap">
+        <!-- First image and button pair -->
+        <div class="w-1/2 p-4">
+          <h1 class="text-1xl pt-10 pb-8">About Me Picture</h1>
+          <img src="<%= aboutMeImage.images[aboutMeImage.images.length - 1] %>" alt="Image 1" class="image">
+          <div class="p-5">
+            <input type="file" class="fileInput" accept="image/*" style="display: none;">
+            <button class="uploadButton py-3 px-5 text-sm font-medium text-center bg-black dark:bg-white text-white dark:text-black rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            >Change Picture</button>
+            <input type="hidden" class="albumHash" value="<%= aboutMeImage.hash %>">
+          </div>
+        </div>
+        <!-- Second image and button pair -->
+        <div class="w-1/2 p-4">
+          <h1 class="text-1xl pt-10 pb-8">Contact Picture</h1>
+          <img src="<%= contactImage.images[contactImage.images.length - 1] %>" alt="Image 2" class="image">
+          <div class="p-5">
+            <input type="file" class="fileInput" accept="image/*" style="display: none;">
+            <button class="uploadButton py-3 px-5 text-sm font-medium text-center bg-black dark:bg-white text-white dark:text-black rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            >Change Picture</button>
+            <input type="hidden" class="albumHash" value="<%= contactImage.hash %>">
+          </div>
+        </div>
+        <!-- Add more image and button pairs as needed -->
+      </div>
+    </div>
+  </section>
+  <% albums.forEach(album => { %>
+  <h1 class="text-3xl pt-10 pb-8"><%= album.name %></h1>
+  <section class="image-gallery-edit nature-section">
+    <% album.images.forEach(function(image){ %>
+    <div class="gallery-edit-item">
+      <div class="image-edit-container">
+        <img alt="" class="thumbnail" src="<%= image.link %>" />
+        <button class="edit-delete-button" data-image-id="<%= image.id %>">x</button>
+      </div>
+    </div>
+    <% }) %>
+    <div class="add-button-container">
+      <input type="file" class="fileInput" accept="image/*" style="display: none;">
+      <button class="add-button uploadButton">
+        <svg class="h-16 w-16 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>   
+      </button>
+      <!-- Hidden input to store the album hash -->
+      <input type="hidden" class="albumHash" value="<%= album.albumHash %>">
+    </div>
+  </section>
+  <% }) %>
+
+  
+<!-- Footer -->
+<%- include("partials/footer") %>

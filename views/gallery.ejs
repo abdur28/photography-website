@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+
+<div class="container mx-auto">
+  <h1 class="font-signika text-4xl pt-10 pb-8">GALLERY</h1>
+
+  <!-- Album Menu -->
+  <div class="alime-projects-menu flex justify-center mb-8">
+    <div class="portfolio-menu flex overflow-x-scroll pb-10 hide-scroll-bar">
+      <button class="btn active mr-4" data-filter="*">All</button>
+      <!-- You can dynamically generate buttons based on your albums here -->
+      <% albums.forEach(album => { %>
+        <button class="btn mr-4" data-filter="<%= album.name %>"><%= album.name %></button>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- Albums -->
+  <% var allImages = [] %>
+  <div id="gallery-container">
+    <% albums.forEach(album => { %>  
+      <section id='<%= album.name %>' class="gallery-section text-neutral-700">
+        <h1 class="font-signika text-3xl pt-10 pb-8"><%= album.name %></h1>
+        <div class="container w-full">
+          <div class="flex flex-wrap justify-start">
+            <% album.images.forEach(function(image) { %>  
+              <div class="my-image flex-grow p-2">
+                <a href="<%= image.link %>" data-fancybox="<%= album.name %>">
+                  <img alt="" class="all-images border-radius block h-full w-full object-cover object-center opacity-100 animate-fade-in transition duration-500 transform scale-100 hover:scale-110" src="<%= image.link %>" />
+                </a>
+              </div>
+              <% allImages.push(image.link) %> <!-- Corrected: Push image link into allImages array -->
+            <% }); %>
+          </div>
+        </div>
+      </section>
+    <% }) %>
+  </div>
+
+  <!-- Hidden input field to store allImages array -->
+  <input type="hidden" id="allImages" value="<%= JSON.stringify(allImages) %>">
+</div>
+
+<%- include("partials/footer") %>
