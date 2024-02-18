@@ -18,8 +18,10 @@ const upload = multer({ storage: storage });
 // Initialize Redis client
 const redisClient = Redis.createClient();
 
-redisClient.on('error', (err) => {
-    console.error('Redis client error:', err);
+const redisClient = Redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD 
 });
 
 app.set("view engine", "ejs");
