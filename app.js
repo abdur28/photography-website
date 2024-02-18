@@ -199,7 +199,7 @@ const aboutMeHash = 'cpEEnIy';
 mongoose.set("strictQuery", false);
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(`${mongoDBURL}`);
+    const conn = await mongoose.connect(process.env.mongoDBURL);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.log(error);
