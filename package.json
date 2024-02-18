@@ -10,6 +10,9 @@
   },
   "author": "'Abdurrahman Idris'",
   "license": "ISC",
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
