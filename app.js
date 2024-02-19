@@ -267,7 +267,7 @@ app.get('/',ensureToken, async (req, res) => {
     }
 });
 
-app.get('/contact', async (req, res) => {
+app.get('/contact',ensureToken, async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${contachHash}`, {
             headers: {
@@ -285,7 +285,7 @@ app.get('/contact', async (req, res) => {
     }
 });
 
-app.get('/about-me', async (req, res) => {
+app.get('/about-me',ensureToken, async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${aboutMeHash}`, {
             headers: {
