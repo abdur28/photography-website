@@ -271,7 +271,7 @@ app.get('/contact', async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${contachHash}`, {
             headers: {
-                'Authorization': `Client-ID ${clientID}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
@@ -289,7 +289,7 @@ app.get('/about-me', async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${aboutMeHash}`, {
             headers: {
-                'Authorization': `Client-ID ${clientID}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
@@ -350,6 +350,7 @@ app.post('/iamtheowner01-admin', async (req, res) => {
 
 app.get('/iamtheowner01-admin-gallery-edit', ensureToken, async (req, res) => {
     try {
+        clearCache();
         const albumPromises = albumHashes.map(async album => {
             const images = await fetchAndCacheImages(album.hash);
             return { name: album.name, images, albumHash: album.hash };
