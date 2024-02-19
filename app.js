@@ -267,11 +267,11 @@ app.get('/',ensureToken, async (req, res) => {
     }
 });
 
-app.get('/contact',ensureToken, async (req, res) => {
+app.get('/contact', async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${contachHash}`, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Client-ID ${clientID}`
             }
         });
 
@@ -285,11 +285,11 @@ app.get('/contact',ensureToken, async (req, res) => {
     }
 });
 
-app.get('/about-me',ensureToken, async (req, res) => {
+app.get('/about-me', async (req, res) => {
     try {
         const response = await axios.get(`https://api.imgur.com/3/account/abdur28/album/${aboutMeHash}`, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Client-ID ${clientID}`
             }
         });
 
